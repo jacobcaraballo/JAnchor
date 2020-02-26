@@ -1,11 +1,11 @@
-######Jacob Caraballo
+###### Jacob Caraballo
 # JAnchor
 
 JAnchor simplifies the usage of NSLayoutConstraints. It handles most simple constraints.
 
 ---
 
-### **Without JAnchor**:
+### Without JAnchor:
 
 ```swift
 NSLayoutConstraint.activate([
@@ -26,7 +26,7 @@ view.anchor(to: superview)
 	.centerY()
 ```
 
-<br>
+
 The following code samples do the same thing as the above code:
 
 ```swift
@@ -40,7 +40,7 @@ view.anchor(to: superview)
 ```
 ---
 
-###Other Examples
+### Other Examples
 
 Anchor `view` to the *safeAreaLayoutGuide* of `superview`:
 
@@ -70,9 +70,10 @@ view1.anchor(to: view2)
 	.width(multiplier: 0.5)
 ```
 ---
-<br>
-###Multiple Anchors
-####You can anchor multiple views at once, when they follow the same constraints.
+
+### Multiple Anchors
+
+#### You can anchor multiple views at once, when they follow the same constraints.
 
 Let's say you have this situation:
 
@@ -101,8 +102,8 @@ With **JAnchor**, all you have to do is this:
 	.frame()
 ```
 ---
-<br>
-###JAnchor Objects
+
+### JAnchor Objects
 Anchors return a **JAnchor** object which contains all activated `NSLayoutConstraints`. So that you can update them later if needed.
 
 For Example:
