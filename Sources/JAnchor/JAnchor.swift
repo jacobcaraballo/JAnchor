@@ -335,7 +335,7 @@ extension JAnchor {
 	public func stackLeftToRight(spacing: CGFloat = 0) -> JAnchor {
 		var previousView: JView?
 		for (view, anchor) in views {
-			view.anchor(to: previousView ?? anchor.view).left(offset: previousView != nil ? spacing : 0)
+			view.anchor(to: previousView ?? anchor.view).leftToRight(offset: previousView != nil ? spacing : 0)
 			previousView = view
 		}
 		return self
@@ -345,7 +345,7 @@ extension JAnchor {
 	public func stackRightToLeft(spacing: CGFloat = 0) -> JAnchor {
 		var previousView: JView?
 		for (view, anchor) in views {
-			view.anchor(to: previousView ?? anchor.view).right(offset: previousView != nil ? spacing : 0)
+			view.anchor(to: previousView ?? anchor.view).rightToLeft(offset: previousView != nil ? spacing : 0)
 			previousView = view
 		}
 		return self
@@ -355,7 +355,7 @@ extension JAnchor {
 	public func stackTopToBottom(spacing: CGFloat = 0) -> JAnchor {
 		var previousView: JView?
 		for (view, anchor) in views {
-			view.anchor(to: previousView ?? anchor.view).top(offset: previousView != nil ? spacing : 0)
+			view.anchor(to: previousView ?? anchor.view).topToBottom(offset: previousView != nil ? spacing : 0)
 			previousView = view
 		}
 		return self
@@ -365,7 +365,7 @@ extension JAnchor {
 	public func stackBottomToTop(spacing: CGFloat = 0) -> JAnchor {
 		var previousView: JView?
 		for (view, anchor) in views {
-			view.anchor(to: previousView ?? anchor.view).bottom(offset: previousView != nil ? spacing : 0)
+			view.anchor(to: previousView ?? anchor.view).bottomToTop(offset: previousView != nil ? spacing : 0)
 			previousView = view
 		}
 		return self
