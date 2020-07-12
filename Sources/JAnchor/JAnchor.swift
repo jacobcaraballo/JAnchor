@@ -7,43 +7,50 @@
 //
 
 import Foundation
+
+#if os(macOS)
+import Cocoa
+public typealias JView = NSView
+#else
 import UIKit
+public typealias JView = UIView
+#endif
 
 
 
 public final class JAnchor {
 	
 	fileprivate class JAnchorView {
-		let view: UIView
+		let view: JView
 		var constraints = [JAnchorKey: NSLayoutConstraint]()
 		
-		init(_ view: UIView) {
+		init(_ view: JView) {
 			self.view = view
 		}
 	}
 	
-	private var views = [UIView: JAnchorView]()
+	private var views = [JView: JAnchorView]()
 	private let safe: Bool
 	
-	public init(view: UIView, anchor: UIView = UIView(), anchorUsesSafeLayout: Bool = false) {
+	public init(view: JView, anchor: JView = JView(), anchorUsesSafeLayout: Bool = false) {
 		view.translatesAutoresizingMaskIntoConstraints = false
 		self.views = [view: JAnchorView(anchor)]
 		self.safe = anchorUsesSafeLayout
 	}
 	
-	public init(views: [UIView], anchors: [UIView] = [], anchorUsesSafeLayout: Bool = false) {
+	public init(views: [JView], anchors: [JView] = [], anchorUsesSafeLayout: Bool = false) {
 		
 		self.safe = anchorUsesSafeLayout
 		
 		for (i, view) in views.enumerated() {
 			view.translatesAutoresizingMaskIntoConstraints = false
-			let anchor = i < anchors.count ? anchors[i] : UIView()
+			let anchor = i < anchors.count ? anchors[i] : JView()
 			self.views[view] = JAnchorView(anchor)
 		}
 		
 	}
 	
-	private func activate(_ constraint: NSLayoutConstraint, for key: JAnchorKey, on view: UIView) {
+	private func activate(_ constraint: NSLayoutConstraint, for key: JAnchorKey, on view: JView) {
 		
 		// deactivate constraint if it already exists
 		if let existingConstraint = views[view]?.constraints[key] {
@@ -57,12 +64,12 @@ public final class JAnchor {
 		
 	}
 	
-	public func get(for key: JAnchorKey, in view: UIView! = nil) -> NSLayoutConstraint {
+	public func get(for key: JAnchorKey, in view: JView! = nil) -> NSLayoutConstraint {
 		if let view = view { return views[view]!.constraints[key]! }
 		return views.first!.value.constraints[key]!
 	}
 	
-	public func getAll(in view: UIView! = nil) -> [JAnchorKey: NSLayoutConstraint] {
+	public func getAll(in view: JView! = nil) -> [JAnchorKey: NSLayoutConstraint] {
 		if let view = view { return views[view]!.constraints }
 		return views.first!.value.constraints
 	}
@@ -79,6 +86,14 @@ public final class JAnchor {
 	
 }
 
+
+
+// Simplify interchanging UIView / NSView
+#if os(macOS)
+extension JView {
+	var safeAreaLayoutGuide: JView { return self }
+}
+#endif
 
 
 // Enums
@@ -128,7 +143,6 @@ extension JAnchor {
 	}
 	
 }
-
 
 
 // Sizing
@@ -435,7 +449,7 @@ extension JAnchor {
 extension JAnchor {
 	
 	
-	private func getXAnchor(of view: UIView, for position: JAnchorKey, safe: Bool = false, isAnchor: Bool = false) -> NSLayoutXAxisAnchor {
+	private func getXAnchor(of view: JView, for position: JAnchorKey, safe: Bool = false, isAnchor: Bool = false) -> NSLayoutXAxisAnchor {
 		
 		if isAnchor {
 			switch position {
@@ -471,7 +485,7 @@ extension JAnchor {
 		
 	}
 	
-	private func getYAnchor(of view: UIView, for position: JAnchorKey, safe: Bool = false, isAnchor: Bool = false) -> NSLayoutYAxisAnchor {
+	private func getYAnchor(of view: JView, for position: JAnchorKey, safe: Bool = false, isAnchor: Bool = false) -> NSLayoutYAxisAnchor {
 		
 		if isAnchor {
 			

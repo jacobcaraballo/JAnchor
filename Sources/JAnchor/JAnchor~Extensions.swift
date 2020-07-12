@@ -6,25 +6,30 @@
 //
 
 import Foundation
+
+#if os(macOS)
+import Cocoa
+#else
 import UIKit
+#endif
 
 
-// UIView Array anchor additions
-extension Array where Element: UIView {
+// JView Array anchor additions
+extension Array where Element: JView {
 	
 	func anchor() -> JAnchor {
 		return JAnchor(views: self)
 	}
 	
-	func anchor(to view: UIView) -> JAnchor {
-		return JAnchor(views: self, anchors: Array<UIView>(repeating: view, count: self.count))
+	func anchor(to view: JView) -> JAnchor {
+		return JAnchor(views: self, anchors: Array<JView>(repeating: view, count: self.count))
 	}
 	
-	func anchor(to views: [UIView]) -> JAnchor {
+	func anchor(to views: [JView]) -> JAnchor {
 		return JAnchor(views: self, anchors: views)
 	}
 	
-	func anchor(to views: [UIView], usesSafeArea: Bool) -> JAnchor {
+	func anchor(to views: [JView], usesSafeArea: Bool) -> JAnchor {
 		return JAnchor(views: self, anchors: views, anchorUsesSafeLayout: usesSafeArea)
 	}
 	
@@ -32,18 +37,18 @@ extension Array where Element: UIView {
 
 
 
-// UIView anchor additions
-extension UIView {
+// JView anchor additions
+extension JView {
 	
 	func anchor() -> JAnchor {
 		return JAnchor(view: self)
 	}
 	
-	func anchor(to view: UIView) -> JAnchor {
+	func anchor(to view: JView) -> JAnchor {
 		return JAnchor(view: self, anchor: view)
 	}
 	
-	func anchor(to view: UIView, usesSafeArea: Bool) -> JAnchor {
+	func anchor(to view: JView, usesSafeArea: Bool) -> JAnchor {
 		return JAnchor(view: self, anchor: view, anchorUsesSafeLayout: usesSafeArea)
 	}
 	
