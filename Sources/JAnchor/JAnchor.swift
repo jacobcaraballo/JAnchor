@@ -336,14 +336,14 @@ extension JAnchor {
 	}
 	
 	@discardableResult
-	public func stackLeftToRight(spacing: CGFloat = 0) -> JAnchor {
+	public func stackLeftToRight(offset: CGFloat = 0, spacing: CGFloat = 0) -> JAnchor {
 		var previousView: JView?
 		for view in viewsArray {
 			guard let anchor = views[view] else { continue }
 			if let previousView = previousView {
 				view.anchor(to: previousView).leftToRight(offset: spacing)
 			} else {
-				view.anchor(to: anchor.view).left(offset: 0)
+				view.anchor(to: anchor.view).left(offset: offset)
 			}
 			previousView = view
 		}
@@ -351,14 +351,14 @@ extension JAnchor {
 	}
 	
 	@discardableResult
-	public func stackRightToLeft(spacing: CGFloat = 0) -> JAnchor {
+	public func stackRightToLeft(offset: CGFloat = 0, spacing: CGFloat = 0) -> JAnchor {
 		var previousView: JView?
 		for view in viewsArray {
 			guard let anchor = views[view] else { continue }
 			if let previousView = previousView {
 				view.anchor(to: previousView).rightToLeft(offset: spacing)
 			} else {
-				view.anchor(to: anchor.view).right(offset: 0)
+				view.anchor(to: anchor.view).right(offset: offset)
 			}
 			previousView = view
 		}
@@ -366,14 +366,14 @@ extension JAnchor {
 	}
 	
 	@discardableResult
-	public func stackTopToBottom(spacing: CGFloat = 0) -> JAnchor {
+	public func stackTopToBottom(offset: CGFloat = 0, spacing: CGFloat = 0) -> JAnchor {
 		var previousView: JView?
 		for view in viewsArray {
 			guard let anchor = views[view] else { continue }
 			if let previousView = previousView {
 				view.anchor(to: previousView).topToBottom(offset: spacing)
 			} else {
-				view.anchor(to: anchor.view).top(offset: 0)
+				view.anchor(to: anchor.view).top(offset: offset)
 			}
 			previousView = view
 		}
@@ -381,14 +381,14 @@ extension JAnchor {
 	}
 	
 	@discardableResult
-	public func stackBottomToTop(spacing: CGFloat = 0) -> JAnchor {
+	public func stackBottomToTop(offset: CGFloat = 0, spacing: CGFloat = 0) -> JAnchor {
 		var previousView: JView?
 		for view in viewsArray {
 			guard let anchor = views[view] else { continue }
 			if let previousView = previousView {
 				view.anchor(to: previousView).bottomToTop(offset: spacing)
 			} else {
-				view.anchor(to: anchor.view).bottom(offset: 0)
+				view.anchor(to: anchor.view).bottom(offset: offset)
 			}
 			previousView = view
 		}
