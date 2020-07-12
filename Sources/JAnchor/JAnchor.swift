@@ -253,6 +253,16 @@ extension JAnchor {
 	}
 	
 	@discardableResult
+	public func widthToHeight() -> JAnchor {
+		return widthToHeight(multiplier: 1, offset: 0)
+	}
+	
+	@discardableResult
+	public func heightToWidth() -> JAnchor {
+		return heightToWidth(multiplier: 1, offset: 0)
+	}
+	
+	@discardableResult
 	public func size(multiplier: CGFloat = 1, offset: CGFloat = 0) -> JAnchor {
 		return width(multiplier: multiplier, offset: offset).height(multiplier: multiplier, offset: offset)
 	}
