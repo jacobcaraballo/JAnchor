@@ -350,7 +350,7 @@ extension JAnchor {
 		var previousView: JView?
 		for (view, anchor) in views {
 			if let previousView = previousView {
-				view.anchor(to: previousView).rightToLeft()(offset: spacing)
+				view.anchor(to: previousView).rightToLeft(offset: spacing)
 			} else {
 				view.anchor(to: anchor.view).right(offset: 0)
 			}
