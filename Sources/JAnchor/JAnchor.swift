@@ -29,12 +29,14 @@ public final class JAnchor {
 		}
 	}
 	
+	private var viewsArray: [JView]
 	private var views = [JView: JAnchorView]()
 	private let safe: Bool
 	
 	public init(view: JView, anchor: JView = JView(), anchorUsesSafeLayout: Bool = false) {
 		view.translatesAutoresizingMaskIntoConstraints = false
 		self.views = [view: JAnchorView(anchor)]
+		self.viewsArray = [view]
 		self.safe = anchorUsesSafeLayout
 	}
 	
@@ -47,6 +49,8 @@ public final class JAnchor {
 			let anchor = i < anchors.count ? anchors[i] : JView()
 			self.views[view] = JAnchorView(anchor)
 		}
+		
+		self.viewsArray = views
 		
 	}
 	
@@ -334,7 +338,8 @@ extension JAnchor {
 	@discardableResult
 	public func stackLeftToRight(spacing: CGFloat = 0) -> JAnchor {
 		var previousView: JView?
-		for (view, anchor) in views {
+		for view in viewsArray {
+			guard let anchor = views[view] else { continue }
 			if let previousView = previousView {
 				view.anchor(to: previousView).leftToRight(offset: spacing)
 			} else {
@@ -348,7 +353,8 @@ extension JAnchor {
 	@discardableResult
 	public func stackRightToLeft(spacing: CGFloat = 0) -> JAnchor {
 		var previousView: JView?
-		for (view, anchor) in views {
+		for view in viewsArray {
+			guard let anchor = views[view] else { continue }
 			if let previousView = previousView {
 				view.anchor(to: previousView).rightToLeft(offset: spacing)
 			} else {
@@ -362,7 +368,8 @@ extension JAnchor {
 	@discardableResult
 	public func stackTopToBottom(spacing: CGFloat = 0) -> JAnchor {
 		var previousView: JView?
-		for (view, anchor) in views {
+		for view in viewsArray {
+			guard let anchor = views[view] else { continue }
 			if let previousView = previousView {
 				view.anchor(to: previousView).topToBottom(offset: spacing)
 			} else {
@@ -376,7 +383,8 @@ extension JAnchor {
 	@discardableResult
 	public func stackBottomToTop(spacing: CGFloat = 0) -> JAnchor {
 		var previousView: JView?
-		for (view, anchor) in views {
+		for view in viewsArray {
+			guard let anchor = views[view] else { continue }
 			if let previousView = previousView {
 				view.anchor(to: previousView).bottomToTop(offset: spacing)
 			} else {
