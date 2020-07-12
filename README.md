@@ -4,6 +4,20 @@
 JAnchor simplifies the usage of NSLayoutConstraints. It handles most simple constraints.
 
 ---
+### APM Installation
+
+You can install JAnchor through the Apple Package Manager, using the link below. To use, simply `import JAnchor` at the top of the file.
+
+```
+https://github.com/jacobcaraballo/JAnchor.git
+```
+
+---
+### Manual Installation
+
+You can also install JAnchor by simply dragging the source files into your project.
+
+---
 
 ### Without JAnchor:
 
