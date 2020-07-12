@@ -316,46 +316,6 @@ extension JAnchor {
 	}
 	
 	@discardableResult
-	private func stackLeftToRight(spacing: CGFloat = 0) -> JAnchor {
-		var previousView: JView?
-		for (view, anchor) in views {
-			view.anchor(to: previousView ?? anchor.view).left(offset: previousView != nil ? spacing : 0)
-			previousView = view
-		}
-		return self
-	}
-	
-	@discardableResult
-	private func stackRightToLeft(spacing: CGFloat = 0) -> JAnchor {
-		var previousView: JView?
-		for (view, anchor) in views {
-			view.anchor(to: previousView ?? anchor.view).right(offset: previousView != nil ? spacing : 0))
-			previousView = view
-		}
-		return self
-	}
-	
-	@discardableResult
-	private func stackTopToBottom(spacing: CGFloat = 0) -> JAnchor {
-		var previousView: JView?
-		for (view, anchor) in views {
-			view.anchor(to: previousView ?? anchor.view).top(offset: previousView != nil ? spacing : 0)
-			previousView = view
-		}
-		return self
-	}
-	
-	@discardableResult
-	private func stackBottomToTop(spacing: CGFloat = 0) -> JAnchor {
-		var previousView: JView?
-		for (view, anchor) in views {
-			view.anchor(to: previousView ?? anchor.view).bottom(offset: previousView != nil ? spacing : 0))
-			previousView = view
-		}
-		return self
-	}
-	
-	@discardableResult
 	private func x(_ position: JAnchorKey, offset: CGFloat = 0) -> JAnchor {
 		for (view, anchor) in views {
 			activate(getXAnchor(of: view, for: position).constraint(equalTo: getXAnchor(of: anchor.view, for: position, safe: safe, isAnchor: true), constant: offset), for: position, on: view)
@@ -367,6 +327,46 @@ extension JAnchor {
 	private func y(_ position: JAnchorKey, offset: CGFloat = 0) -> JAnchor {
 		for (view, anchor) in views {
 			activate(getYAnchor(of: view, for: position).constraint(equalTo: getYAnchor(of: anchor.view, for: position, safe: safe, isAnchor: true), constant: offset), for: position, on: view)
+		}
+		return self
+	}
+	
+	@discardableResult
+	public func stackLeftToRight(spacing: CGFloat = 0) -> JAnchor {
+		var previousView: JView?
+		for (view, anchor) in views {
+			view.anchor(to: previousView ?? anchor.view).left(offset: previousView != nil ? spacing : 0)
+			previousView = view
+		}
+		return self
+	}
+	
+	@discardableResult
+	public func stackRightToLeft(spacing: CGFloat = 0) -> JAnchor {
+		var previousView: JView?
+		for (view, anchor) in views {
+			view.anchor(to: previousView ?? anchor.view).right(offset: previousView != nil ? spacing : 0))
+			previousView = view
+		}
+		return self
+	}
+	
+	@discardableResult
+	public func stackTopToBottom(spacing: CGFloat = 0) -> JAnchor {
+		var previousView: JView?
+		for (view, anchor) in views {
+			view.anchor(to: previousView ?? anchor.view).top(offset: previousView != nil ? spacing : 0)
+			previousView = view
+		}
+		return self
+	}
+	
+	@discardableResult
+	public func stackBottomToTop(spacing: CGFloat = 0) -> JAnchor {
+		var previousView: JView?
+		for (view, anchor) in views {
+			view.anchor(to: previousView ?? anchor.view).bottom(offset: previousView != nil ? spacing : 0))
+			previousView = view
 		}
 		return self
 	}
