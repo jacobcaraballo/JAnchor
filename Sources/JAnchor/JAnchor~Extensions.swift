@@ -17,19 +17,19 @@ import UIKit
 // JView Array anchor additions
 extension Array where Element: JView {
 	
-	func anchor() -> JAnchor {
+	public func anchor() -> JAnchor {
 		return JAnchor(views: self)
 	}
 	
-	func anchor(to view: JView) -> JAnchor {
+	public func anchor(to view: JView) -> JAnchor {
 		return JAnchor(views: self, anchors: Array<JView>(repeating: view, count: self.count))
 	}
 	
-	func anchor(to views: [JView]) -> JAnchor {
+	public func anchor(to views: [JView]) -> JAnchor {
 		return JAnchor(views: self, anchors: views)
 	}
 	
-	func anchor(to views: [JView], usesSafeArea: Bool) -> JAnchor {
+	public func anchor(to views: [JView], usesSafeArea: Bool) -> JAnchor {
 		return JAnchor(views: self, anchors: views, anchorUsesSafeLayout: usesSafeArea)
 	}
 	
@@ -40,15 +40,15 @@ extension Array where Element: JView {
 // JView anchor additions
 extension JView {
 	
-	func anchor() -> JAnchor {
+	public func anchor() -> JAnchor {
 		return JAnchor(view: self)
 	}
 	
-	func anchor(to view: JView) -> JAnchor {
+	public func anchor(to view: JView) -> JAnchor {
 		return JAnchor(view: self, anchor: view)
 	}
 	
-	func anchor(to view: JView, usesSafeArea: Bool) -> JAnchor {
+	public func anchor(to view: JView, usesSafeArea: Bool) -> JAnchor {
 		return JAnchor(view: self, anchor: view, anchorUsesSafeLayout: usesSafeArea)
 	}
 	
